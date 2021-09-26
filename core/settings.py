@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     'user_profiles.apps.UserProfilesConfig',
-    'crm'
+    'crm.apps.CrmConfig'
 ]
 
 MIDDLEWARE = [

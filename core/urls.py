@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from user_profiles.urls import router_users, router_managers, router_salesmen, router_supports
+from crm.urls import router_clients, router_contracts, router_events
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('api/managers/', include(router_managers.urls)),
     path('api/salesmen/', include(router_salesmen.urls)),
     path('api/supports/', include(router_supports.urls)),
+    path('api/clients/', include(router_clients.urls)),
+    path('api/clients/<int:client_id>/contracts/', include(router_contracts.urls)),
+    path('api/clients/<int:client_id>/contracts/<int:contract_id>/events/', include(router_events.urls)),
 ]
