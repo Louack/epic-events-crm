@@ -1,0 +1,112 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "undefined",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "salesman_with_client",
+      "password": "test_password"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "support_with_event",
+      "password": "test_password"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "salesman_wo_client",
+      "password": "test_password"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "username": "support_wo_event",
+      "password": "test_password"
+    }
+  },
+  {
+    "model": "user_profiles.Salesman",
+    "pk": 1,
+    "fields": {
+      "user": 2
+    }
+  },
+  {
+    "model": "user_profiles.Salesman",
+    "pk": 2,
+    "fields": {
+      "user": 4
+    }
+  },
+  {
+    "model": "user_profiles.Support",
+    "pk": 1,
+    "fields": {
+      "user": 3
+    }
+  },
+  {
+    "model": "user_profiles.Support",
+    "pk": 2,
+    "fields": {
+      "user": 5
+    }
+  },
+  {
+    "model": "crm.Client",
+    "pk": 1,
+    "fields": {
+      "sales_contact": 1,
+      "first_name": "test_firstname",
+      "last_name": "test_lastname",
+      "email": "test@email.com",
+      "phone": 123456789,
+      "mobile": 123456789,
+      "company": "test_company",
+      "date_created": "2022-10-09 23:55",
+      "date_updated": "2022-10-09 23:55"
+    }
+  },
+  {
+    "model": "crm.Contract",
+    "pk": 1,
+    "fields": {
+      "sales_contact": 1,
+      "client": 1,
+      "status": "True",
+      "amount": 100.0,
+      "payment_due": "2022-10-09 23:55",
+      "date_created": "2022-10-09 23:55",
+      "date_updated": "2022-10-09 23:55"
+    }
+  },
+  {
+    "model": "crm.Event",
+    "pk": 1,
+    "fields": {
+      "support_contact": 1,
+      "client": 1,
+      "event_status": 1,
+      "attendees": 100,
+      "notes": "NA",
+      "event_date": "2022-10-09 23:55",
+      "date_created": "2022-10-09 23:55",
+      "date_updated": "2022-10-09 23:55"
+    }
+  }
+]
