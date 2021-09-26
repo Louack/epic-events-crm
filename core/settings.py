@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
-    'user_profiles',
+    'user_profiles.apps.UserProfilesConfig',
     'crm'
 ]
 
