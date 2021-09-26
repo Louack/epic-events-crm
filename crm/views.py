@@ -1,8 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
 from rest_framework.exceptions import APIException
+from django_filters import rest_framework as filters
 
 from .exceptions import NotFoundException
+from .filters import ClientFilter, EventFilter, ContractFilter
 from .models import Client, Contract, Event
 from .serializers import ClientSerializer, ContractSerializer, EventSerializer, ClientSerializerForManager
 from .permissions import ClientAccess, ContractAccess, EventAccess, IsManager
@@ -34,6 +36,8 @@ class CRMBaseViewSet(viewsets.ModelViewSet):
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
     permission_classes = [IsManager | ClientAccess]
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = ClientFilter
 
     def get_serializer_class(self):
         if hasattr(self.request.user, 'manager'):
@@ -51,6 +55,8 @@ class ClientViewSet(viewsets.ModelViewSet):
 class ContractViewSet(CRMBaseViewSet):
     serializer_class = ContractSerializer
     permission_classes = [IsManager | ContractAccess]
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = ContractFilter
 
     def get_queryset(self):
         queryset = Contract.objects.filter(client=self.client)
@@ -71,6 +77,8 @@ class ContractViewSet(CRMBaseViewSet):
 class EventViewSet(CRMBaseViewSet):
     serializer_class = EventSerializer
     permission_classes = [IsManager | EventAccess]
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = EventFilter
 
     def initial(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:

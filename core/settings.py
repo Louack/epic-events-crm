@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
 
     'user_profiles.apps.UserProfilesConfig',
     'crm.apps.CrmConfig'
