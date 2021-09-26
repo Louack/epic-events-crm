@@ -14,6 +14,8 @@ class ClientAdmin(admin.ModelAdmin):
         'phone',
         'mobile',
         'company',
+        'date_created',
+        'date_updated'
     ]
 
     list_display = [
@@ -26,6 +28,25 @@ class ClientAdmin(admin.ModelAdmin):
         'company',
         'date_created',
         'date_updated'
+    ]
+
+    readonly_fields = [
+        'date_created',
+        'date_updated'
+    ]
+
+    list_filter = [
+        'sales_contact',
+        'last_name',
+    ]
+
+    search_fields = [
+        'last_name',
+        'first_name',
+        'email',
+        'phone',
+        'mobile',
+        'company',
     ]
 
     def has_view_permission(self, request, obj=None):
@@ -94,6 +115,11 @@ class ContractAdmin(admin.ModelAdmin):
         'date_updated'
     ]
 
+    list_filter = [
+        'sales_contact',
+        'client'
+    ]
+
     def has_view_permission(self, request, obj=None):
         if hasattr(request.user, 'manager'):
             return True
@@ -139,6 +165,7 @@ class ContractAdmin(admin.ModelAdmin):
         obj.sales_contact = obj.client.sales_contact
         obj.save()
 
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     fields = [
@@ -168,6 +195,13 @@ class EventAdmin(admin.ModelAdmin):
         'date_created',
         'date_updated'
         ]
+
+    list_filter = [
+        'event_status',
+        'support_contact',
+        'client',
+        'event_date'
+    ]
 
     def has_view_permission(self, request, obj=None):
         if hasattr(request.user, 'manager'):
