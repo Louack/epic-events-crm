@@ -32,3 +32,6 @@ urlpatterns = [
     path('api/clients/<int:client_id>/contracts/', include(router_contracts.urls)),
     path('api/clients/<int:client_id>/contracts/<int:contract_id>/events/', include(router_events.urls)),
 ]
+
+admin.site.index_title = 'Epic Events CRM'
+admin.site.site_header = 'Epic Events Admin'
