@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from user_profiles.models import Salesman
+from user_profiles.models import Salesman, Support
 from .models import Client, Contract, Event
 
 
@@ -40,6 +40,7 @@ class ClientAdmin(admin.ModelAdmin):
     ]
 
     list_display = [
+        'id',
         'last_name',
         'first_name',
         'sales_contact',
@@ -69,6 +70,8 @@ class ClientAdmin(admin.ModelAdmin):
         'mobile',
         'company',
     ]
+
+    ordering = ('id',)
 
     def has_view_permission(self, request, obj=None):
         if hasattr(request.user, 'manager'):
@@ -148,6 +151,7 @@ class ContractAdmin(admin.ModelAdmin):
     ]
 
     list_display = [
+        'id',
         'client',
         'sales_contact',
         'status',
@@ -161,6 +165,8 @@ class ContractAdmin(admin.ModelAdmin):
         'sales_contact',
         'client'
     ]
+
+    ordering = ('id',)
 
     def has_view_permission(self, request, obj=None):
         if hasattr(request.user, 'manager'):
@@ -249,6 +255,7 @@ class EventAdmin(admin.ModelAdmin):
     ]
 
     list_display = [
+        'id',
         'event_status',
         'client',
         'support_contact',
@@ -265,6 +272,8 @@ class EventAdmin(admin.ModelAdmin):
         'client',
         'event_date'
     ]
+
+    ordering = ('id',)
 
     def has_view_permission(self, request, obj=None):
         if hasattr(request.user, 'manager'):

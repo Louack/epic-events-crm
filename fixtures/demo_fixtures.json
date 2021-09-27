@@ -1,0 +1,113 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "manager",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao=",
+      "is_superuser": "True"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "salesman_01",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "salesman_02",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "support_01",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "username": "support_02",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "user_profiles.Salesman",
+    "pk": 1,
+    "fields": {
+      "user": 2
+    }
+  },
+  {
+    "model": "user_profiles.Salesman",
+    "pk": 2,
+    "fields": {
+      "user": 3
+    }
+  },
+  {
+    "model": "user_profiles.Support",
+    "pk": 1,
+    "fields": {
+      "user": 4
+    }
+  },
+  {
+    "model": "user_profiles.Support",
+    "pk": 2,
+    "fields": {
+      "user": 5
+    }
+  },
+  {
+    "model": "crm.Client",
+    "pk": 1,
+    "fields": {
+      "sales_contact": 1,
+      "first_name": "testeur",
+      "last_name": "demo",
+      "email": "testeur@demo.com",
+      "phone": 123456789,
+      "mobile": 123456789,
+      "company": "demo_company",
+      "date_created": "2021-09-27 23:55Z",
+      "date_updated": "2021-09-27 23:55Z"
+    }
+  },
+  {
+    "model": "crm.Contract",
+    "pk": 1,
+    "fields": {
+      "sales_contact": 1,
+      "client": 1,
+      "status": "True",
+      "amount": 1000000,
+      "payment_due": "2021-09-27 23:55Z",
+      "date_created": "2021-09-27 23:55Z",
+      "date_updated": "2021-09-27 23:55Z"
+    }
+  },
+  {
+    "model": "crm.Event",
+    "pk": 1,
+    "fields": {
+      "support_contact": 1,
+      "client": 1,
+      "event_status": 1,
+      "attendees": 500,
+      "notes": "Inauguration du projet CRM",
+      "event_date": "2022-10-09 23:55Z",
+      "date_created": "2021-09-27 23:55Z",
+      "date_updated": "2021-09-27 23:55Z"
+    }
+  }
+]
