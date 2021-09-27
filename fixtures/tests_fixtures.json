@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
       "username": "salesman_with_client",
-      "password": "test_password"
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
     }
   },
   {
@@ -20,7 +20,7 @@
     "pk": 3,
     "fields": {
       "username": "support_with_event",
-      "password": "test_password"
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
     }
   },
   {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
       "username": "salesman_wo_client",
-      "password": "test_password"
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
     }
   },
   {
@@ -36,7 +36,16 @@
     "pk": 5,
     "fields": {
       "username": "support_wo_event",
-      "password": "test_password"
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao="
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "username": "manager",
+      "password": "pbkdf2_sha256$260000$wiXIsVvQa8OvNkq6TL29sI$Ri0sJoz1GpIgR3mBpsGkaAblHAYWQ++rV6GQpmRDwao=",
+      "is_superuser": "True"
     }
   },
   {

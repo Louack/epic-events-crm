@@ -6,27 +6,28 @@ from crm.models import Event
 
 
 class EventTestCase(CRMBaseTestCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.list_kwargs = {
+        cls.list_kwargs = {
             "client_id": 1,
             "contract_id": 1
         }
 
-        self.detail_kwargs = {
+        cls.detail_kwargs = {
             "client_id": 1,
             "contract_id": 1,
             "pk": 1
         }
 
-        self.event_post_form = {
+        cls.event_post_form = {
             "attendees": "1",
             "notes": "test_notes",
             "event_date": "2022-10-09 23:55"
         }
 
-        self.event_put_form = {
+        cls.event_put_form = {
             "attendees": "99",
             "notes": "modified_notes",
             "event_date": "2024-10-09 23:55"
@@ -61,7 +62,6 @@ class AnonTestCase(EventTestCase):
 
 class UndefindedUserTestCase(EventTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.undefined_user)
 
     def test_event_list_undefined(self):
@@ -91,7 +91,6 @@ class UndefindedUserTestCase(EventTestCase):
 
 class SalesmanWithClientTestCase(EventTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.salesman_with_client)
 
     def test_event_list_salesman_with_client(self):
@@ -121,7 +120,6 @@ class SalesmanWithClientTestCase(EventTestCase):
 
 class SalesmanWithoutClientTestCase(EventTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.salesman_wo_client)
 
     def test_event_list_salesman_wo_client(self):
@@ -153,7 +151,6 @@ class SalesmanWithoutClientTestCase(EventTestCase):
 
 class SupportWithEventTestCase(EventTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.support_with_event)
 
     def test_event_list_support_with_event(self):
@@ -183,7 +180,6 @@ class SupportWithEventTestCase(EventTestCase):
 
 class SupportWithoutEventTestCase(EventTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.support_wo_event)
 
     def test_event_list_support_wo_event(self):
@@ -209,3 +205,32 @@ class SupportWithoutEventTestCase(EventTestCase):
     def test_event_delete_support_wo_event(self):
         response = self.client.delete(reverse('events-detail', kwargs=self.detail_kwargs))
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class ManagerTestCase(EventTestCase):
+    def setUp(self):
+        self.client.force_authenticate(user=self.manager)
+
+    def test_event_list_manager(self):
+        response = self.client.get(reverse('events-list', kwargs=self.list_kwargs))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_event_retrieve_manager(self):
+        response = self.client.get(reverse('events-detail', kwargs=self.detail_kwargs))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_event_post_manager(self):
+        event = Event.objects.get(pk=1)
+        event.delete()
+        response = self.client.post(reverse('events-list', kwargs=self.list_kwargs),
+                                    data=self.event_post_form)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_event_put_manager(self):
+        response = self.client.put(reverse('events-detail', kwargs=self.detail_kwargs),
+                                   data=self.event_put_form)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_event_delete_manager(self):
+        response = self.client.delete(reverse('events-detail', kwargs=self.detail_kwargs))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

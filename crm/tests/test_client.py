@@ -5,19 +5,20 @@ from .base_test_crm import CRMBaseTestCase
 
 
 class ClientTestCase(CRMBaseTestCase):
-    def setUp(self):
-        super().setUp()
-
-        self.client_post_form = {
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_post_form = {
             "first_name": "test",
             "last_name": "test",
             "email": "test@email.com",
             "phone": "123456789",
             "mobile": "123456789",
-            "company": "test_company"
+            "company": "test_company",
+            "sales_contact": 1
         }
 
-        self.client_put_form = {
+        cls.client_put_form = {
             "first_name": "modified",
             "last_name": "modified",
             "email": "email@test.com",
@@ -53,7 +54,6 @@ class AnonTestCase(ClientTestCase):
 
 class UndefindedUserTestCase(ClientTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.undefined_user)
 
     def test_client_list_undefined(self):
@@ -81,7 +81,6 @@ class UndefindedUserTestCase(ClientTestCase):
 
 class SalesmanWithClientTestCase(ClientTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.salesman_with_client)
 
     def test_client_list_salesman_with_client(self):
@@ -109,7 +108,6 @@ class SalesmanWithClientTestCase(ClientTestCase):
 
 class SalesmanWithoutClientTestCase(ClientTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.salesman_wo_client)
 
     def test_client_list_salesman_wo_client(self):
@@ -139,7 +137,6 @@ class SalesmanWithoutClientTestCase(ClientTestCase):
 
 class SupportTestCase(ClientTestCase):
     def setUp(self):
-        super().setUp()
         self.client.force_authenticate(user=self.support_with_event)
 
     def test_client_list_support(self):
@@ -163,3 +160,32 @@ class SupportTestCase(ClientTestCase):
     def test_client_delete_support(self):
         response = self.client.delete(reverse('clients-detail', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class ManagerTestCase(ClientTestCase):
+    def setUp(self):
+        self.client_post_form['sales_contact'] = 1
+        self.client_put_form['sales_contact'] = 1
+        self.client.force_authenticate(user=self.manager)
+
+    def test_client_list_manager(self):
+        response = self.client.get(reverse('clients-list'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_client_retrieve_manager(self):
+        response = self.client.get(reverse('clients-detail', kwargs={'pk': 1}))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_client_post_manager(self):
+        response = self.client.post(reverse('clients-list'),
+                                    data=self.client_post_form)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_client_put_manager(self):
+        response = self.client.put(reverse('clients-detail', kwargs={'pk': 1}),
+                                   data=self.client_put_form)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_client_delete_manager(self):
+        response = self.client.delete(reverse('clients-detail', kwargs={'pk': 1}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
