@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from user_profiles.models import Salesman, Support
+from apps.user_profiles.models import Salesman, Support
 from .models import Client, Contract, Event
 
 

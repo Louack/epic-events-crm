@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 
 from .base_test_crm import CRMBaseTestCase
-from crm.models import Event
+from apps.crm.models import Event
 
 
 class EventTestCase(CRMBaseTestCase):

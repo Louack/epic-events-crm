@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from user_profiles.urls import router_users, router_managers, router_salesmen, router_supports
-from crm.urls import router_clients, router_contracts, router_events
+from apps.user_profiles.urls import router_users, router_managers, router_salesmen, router_supports
+from apps.crm.urls import router_clients, router_contracts, router_events
 
 urlpatterns = [
     path('admin/', admin.site.urls),

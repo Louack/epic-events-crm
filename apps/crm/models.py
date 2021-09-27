@@ -2,7 +2,7 @@ import random
 from datetime import datetime
 
 from django.db import models
-from user_profiles.models import Salesman, Support
+from apps.user_profiles.models import Salesman, Support
 
 
 class Client(models.Model):
