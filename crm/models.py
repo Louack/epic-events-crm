@@ -72,7 +72,7 @@ class Contract(models.Model):
         verbose_name = 'Contract'
 
     def __str__(self):
-        return f'Contrat n°{self.pk}'
+        return f'Contract n°{self.pk}'
 
 
 class Event(models.Model):
@@ -106,6 +106,9 @@ class Event(models.Model):
 
     class Meta:
         verbose_name = 'Event'
+
+    def __str__(self):
+        return f'Event n°{self.pk}'
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):

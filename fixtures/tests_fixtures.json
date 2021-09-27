@@ -78,8 +78,8 @@
       "phone": 123456789,
       "mobile": 123456789,
       "company": "test_company",
-      "date_created": "2022-10-09 23:55",
-      "date_updated": "2022-10-09 23:55"
+      "date_created": "2022-10-09 23:55Z",
+      "date_updated": "2022-10-09 23:55Z"
     }
   },
   {
@@ -90,9 +90,9 @@
       "client": 1,
       "status": "True",
       "amount": 100.0,
-      "payment_due": "2022-10-09 23:55",
-      "date_created": "2022-10-09 23:55",
-      "date_updated": "2022-10-09 23:55"
+      "payment_due": "2022-10-09 23:55Z",
+      "date_created": "2022-10-09 23:55Z",
+      "date_updated": "2022-10-09 23:55Z"
     }
   },
   {
@@ -104,9 +104,9 @@
       "event_status": 1,
       "attendees": 100,
       "notes": "NA",
-      "event_date": "2022-10-09 23:55",
-      "date_created": "2022-10-09 23:55",
-      "date_updated": "2022-10-09 23:55"
+      "event_date": "2022-10-09 23:55Z",
+      "date_created": "2022-10-09 23:55Z",
+      "date_updated": "2022-10-09 23:55Z"
     }
   }
 ]
