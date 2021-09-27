@@ -1,19 +1,12 @@
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
-import logging
 
 from .exceptions import NotFoundException, EventAlreadyExists
 from .filters import ClientFilter, EventFilter, ContractFilter
 from .models import Client, Contract, Event
 from .serializers import ClientSerializer, ContractSerializer, EventSerializer, ClientSerializerForManager
 from .permissions import ClientAccess, ContractAccess, EventAccess, IsManager
-
-logger = logging.getLogger(__name__)
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler = logging.FileHandler('crm.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 
 
 class CRMBaseViewSet(viewsets.ModelViewSet):
@@ -25,9 +18,7 @@ class CRMBaseViewSet(viewsets.ModelViewSet):
         try:
             client = Client.objects.get(pk=client_id)
         except ObjectDoesNotExist:
-            message = 'Not found'
-            logger.error(message)
-            raise NotFoundException(message)
+            raise NotFoundException()
         return client
 
     def get_contract(self):
@@ -35,13 +26,9 @@ class CRMBaseViewSet(viewsets.ModelViewSet):
         try:
             contract = Contract.objects.get(pk=contract_id)
         except ObjectDoesNotExist:
-            message = 'Not found'
-            logger.error(message)
-            raise NotFoundException(message)
+            raise NotFoundException()
         if contract.client != self.client:
-            message = 'Not found'
-            logger.error(message)
-            raise NotFoundException(message)
+            raise NotFoundException()
         return contract
 
 
@@ -100,9 +87,7 @@ class EventViewSet(CRMBaseViewSet):
 
     def create(self, request, *args, **kwargs):
         if hasattr(self.contract, 'event'):
-            message = f'An event already exists for {self.contract}'
-            logger.error(message)
-            raise EventAlreadyExists(message)
+            raise EventAlreadyExists()
         else:
             return super().create(request, *args, **kwargs)
 
