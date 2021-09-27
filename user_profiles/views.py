@@ -7,7 +7,7 @@ from .permissions import IsManager
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post', 'put', 'delete']
+    http_method_names = ['get', 'post', 'delete']
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsManager]

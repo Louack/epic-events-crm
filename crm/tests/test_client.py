@@ -48,7 +48,7 @@ class AnonTestCase(ClientTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_client_delete_anon(self):
-        response = self.client.get(reverse('clients-detail', kwargs={'pk': 1}))
+        response = self.client.delete(reverse('clients-detail', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
