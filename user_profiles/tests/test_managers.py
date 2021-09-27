@@ -1,10 +1,10 @@
 from django.urls import reverse
 from rest_framework import status
 
-from .base_test_profiles import CRMBaseTestCase
+from .base_test_profiles import UserProfilesBaseTestCase
 
 
-class ManagersTestCase(CRMBaseTestCase):
+class ManagersTestCase(UserProfilesBaseTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

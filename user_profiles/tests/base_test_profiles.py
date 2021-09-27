@@ -3,7 +3,7 @@ from django.core.management import call_command
 from rest_framework.test import APITestCase
 
 
-class CRMBaseTestCase(APITestCase):
+class UserProfilesBaseTestCase(APITestCase):
     @classmethod
     def setUpClass(cls):
         call_command('loaddata', 'fixtures/tests_fixtures.json', verbosity=0)
