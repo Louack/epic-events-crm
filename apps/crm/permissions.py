@@ -31,7 +31,8 @@ class ContractAccess(BasePermission):
         if view.action in ['list', 'retrieve']:
             return hasattr(request.user, 'salesman') or hasattr(request.user, 'support')
         else:
-            return hasattr(request.user, 'salesman')
+            if hasattr(request.user, 'salesman'):
+                return request.user.salesman == view.client.sales_contact
 
     def has_object_permission(self, request, view, obj):
         if view.action == 'retrieve':

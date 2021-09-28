@@ -120,7 +120,7 @@ class SalesmanWithoutClientTestCase(ContractTestCase):
     def test_contract_post_salesman_wo_client(self):
         response = self.client.post(reverse('contracts-list', kwargs=self.list_kwargs),
                                     data=self.contract_post_form)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_contract_put_salesman_wo_client(self):
         self.client.force_authenticate(user=self.salesman_wo_client)
