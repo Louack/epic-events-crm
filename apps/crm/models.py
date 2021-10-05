@@ -1,5 +1,4 @@
 import random
-from datetime import datetime
 
 from django.db import models
 from apps.user_profiles.models import Salesman, Support
@@ -33,7 +32,7 @@ class Client(models.Model):
         blank=True
     )
     date_created = models.DateTimeField(
-        auto_now=True
+        auto_now_add=True
     )
     date_updated = models.DateTimeField(
         auto_now=True
@@ -44,12 +43,6 @@ class Client(models.Model):
 
     def __str__(self):
         return f'{self.last_name} {self.first_name}'
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        self.date_updated = datetime.now()
-        super().save(force_insert=False, force_update=False, using=None,
-                     update_fields=None)
 
 
 class Contract(models.Model):
@@ -69,7 +62,7 @@ class Contract(models.Model):
     amount = models.FloatField()
     payment_due = models.DateTimeField()
     date_created = models.DateTimeField(
-        auto_now=True
+        auto_now_add=True
     )
     date_updated = models.DateTimeField(
         auto_now=True
@@ -80,12 +73,6 @@ class Contract(models.Model):
 
     def __str__(self):
         return f'Contract n°{self.pk}'
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        self.date_updated = datetime.now()
-        super().save(force_insert=False, force_update=False, using=None,
-                     update_fields=None)
 
 
 class Event(models.Model):
@@ -111,7 +98,7 @@ class Event(models.Model):
     notes = models.TextField()
     event_date = models.DateTimeField()
     date_created = models.DateTimeField(
-        auto_now=True
+        auto_now_add=True
     )
     date_updated = models.DateTimeField(
         auto_now=True
@@ -125,7 +112,6 @@ class Event(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        self.date_updated = datetime.now()
         if self.support_contact is None:
             self.support_contact = self.assign_default_support()
         super().save(force_insert=False, force_update=False, using=None,
@@ -151,4 +137,3 @@ class Event(models.Model):
         if potential_assignees:
             assigned_support = random.choice(potential_assignees)
             return assigned_support
-

@@ -10,4 +10,3 @@ def sales_contact_modified_handler(instance, **kwargs):
         if contract.sales_contact != instance.sales_contact:
             contract.sales_contact = instance.sales_contact
             contract.save()
-

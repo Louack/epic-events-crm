@@ -58,7 +58,7 @@ class SalesmanAdmin(admin.ModelAdmin):
 
 
 @admin.register(Support)
-class SalesmanAdmin(admin.ModelAdmin):
+class SupportAdmin(admin.ModelAdmin):
     list_display = (
         'user',
     )

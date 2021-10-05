@@ -314,8 +314,9 @@ class EventAdmin(admin.ModelAdmin):
         elif db_field.name == 'event_status':
             if 'add' in request.path:
                 if hasattr(request.user, 'salesman'):
-                    kwargs["queryset"] = Contract.objects.filter(event=None,
-                                                                 sales_contact=request.user.salesman)
+                    kwargs["queryset"] = \
+                        Contract.objects.filter(event=None,
+                                                sales_contact=request.user.salesman)
                 else:
                     kwargs["queryset"] = Contract.objects.filter(event=None)
             elif 'change' in request.path:

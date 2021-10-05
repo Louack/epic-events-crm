@@ -5,7 +5,8 @@ from django_filters import rest_framework as filters
 from .exceptions import NotFoundException, EventAlreadyExists
 from .filters import ClientFilter, EventFilter, ContractFilter
 from .models import Client, Contract, Event
-from .serializers import ClientSerializer, ContractSerializer, EventSerializer, ClientSerializerForManager
+from .serializers import ClientSerializer, ContractSerializer, EventSerializer, \
+    ClientSerializerForManager
 from .permissions import ClientAccess, ContractAccess, EventAccess, IsManager
 
 
@@ -100,4 +101,3 @@ class EventViewSet(CRMBaseViewSet):
         context['client'] = self.client
         context['contract'] = self.contract
         return context
-
