@@ -6,7 +6,7 @@ This API allows staff members to manage clients and their associated contracts a
 
 ## Installation
 
-1. Clone the project repo with <code> git clone https://github.com/Louack/OC_PP10.git </code> or download the project [zip file](https://github.com/Louack/OC_PP12/archive/refs/heads/master.zip).
+1. Clone the project repo with <code> git clone https://github.com/Louack/OC_PP12.git </code> or download the project [zip file](https://github.com/Louack/OC_PP12/archive/refs/heads/master.zip).
 2. Go in the project directory from the command line
 3. Create a virtual env with `$ py -m venv env` for windows or `$ python3 -m venv env` for macos/linux.
 4. Activate the virtual env with `$ env\Scripts\activate` for windows or `$ source env/bin/activate` for macos/linux.
