@@ -22,8 +22,8 @@ This API allows staff members to manage clients and their associated contracts a
 ## Features
 
 The API is available at localhost:8000
-Postman documentation of all features are available at: !!!TO COMPLETE!!!
-Staff members can also log in via the admin panel from (/admin).
+Postman documentation of all features are available on [Postman](https://documenter.getpostman.com/view/17143964/UV5TFedC).
+Staff members can also log in via the admin panel from the '/admin' URL path.
 
 ## Demo data
 
