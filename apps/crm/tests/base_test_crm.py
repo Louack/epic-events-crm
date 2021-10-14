@@ -4,6 +4,10 @@ from rest_framework.test import APITestCase
 
 
 class CRMBaseTestCase(APITestCase):
+    """
+    Defines the fixtures to use for all tests of the crm app as well as all
+    the types of users.
+    """
     @classmethod
     def setUpClass(cls):
         call_command('loaddata', 'fixtures/tests_fixtures.json', verbosity=0)
