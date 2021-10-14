@@ -112,6 +112,9 @@ class Event(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
+        """
+        Call a method assigning a random support to the event if no support were chosen in form.
+        """
         if self.support_contact is None:
             self.support_contact = self.assign_default_support()
         super().save(force_insert=False, force_update=False, using=None,
@@ -119,6 +122,9 @@ class Event(models.Model):
 
     @staticmethod
     def assign_default_support():
+        """
+        Pick a random support among supports which have the least events assigned.
+        """
         supports = Support.objects.all()
         potential_assignees = []
         min_events_assigned = None

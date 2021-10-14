@@ -4,6 +4,9 @@ from .models import Client, Contract, Event
 
 
 class ClientSerializerForManager(serializers.ModelSerializer):
+    """
+    Serializers for client model allowing  managers to attribute any salesman as sales_contact.
+    """
     date_created = serializers.SerializerMethodField()
     date_updated = serializers.SerializerMethodField()
 
@@ -31,6 +34,9 @@ class ClientSerializerForManager(serializers.ModelSerializer):
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    """
+    Serializer for client model autofilling the salesman request user as the sales_contact.
+    """
     date_created = serializers.SerializerMethodField()
     date_updated = serializers.SerializerMethodField()
 
@@ -64,6 +70,10 @@ class ClientSerializer(serializers.ModelSerializer):
 
 
 class ContractSerializer(serializers.ModelSerializer):
+    """
+    Serializer for contract model autofilling the salesman request user as the sales_contact and
+    client linked to the contract in the client field.
+    """
     date_created = serializers.SerializerMethodField()
     date_updated = serializers.SerializerMethodField()
 
@@ -96,6 +106,10 @@ class ContractSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
+    """
+    Serializer for event model autofilling the corresponding client and contract to their
+    respective fields.
+    """
     date_created = serializers.SerializerMethodField()
     date_updated = serializers.SerializerMethodField()
     event_planned_for = serializers.SerializerMethodField()

@@ -5,6 +5,11 @@ from .base_test_profiles import UserProfilesBaseTestCase
 
 
 class SupportsTestCase(UserProfilesBaseTestCase):
+    """
+    Set the post form to use for all tests class inheriting this class.
+    Inheriting classes will then test all API endpoints for the support model (one
+    class per user type).
+    """
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

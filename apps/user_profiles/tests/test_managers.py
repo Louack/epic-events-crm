@@ -5,6 +5,11 @@ from .base_test_profiles import UserProfilesBaseTestCase
 
 
 class ManagersTestCase(UserProfilesBaseTestCase):
+    """
+    Set the post form to use for all tests class inheriting this class.
+    Inheriting classes will then test all API endpoints for the manager model (
+    one class per user type).
+    """
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

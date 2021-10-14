@@ -2,6 +2,9 @@ from rest_framework.permissions import BasePermission
 
 
 class IsManager(BasePermission):
+    """
+    Automatically grants access if request user is a manager.
+    """
     def has_permission(self, request, view):
         if hasattr(request.user, 'manager'):
             return True
@@ -12,6 +15,9 @@ class IsManager(BasePermission):
 
 
 class ClientAccess(BasePermission):
+    """
+    Defines access at the client level.
+    """
     def has_permission(self, request, view):
         if view.action in ['list', 'retrieve']:
             return hasattr(request.user, 'salesman') or hasattr(request.user, 'support')
@@ -27,6 +33,9 @@ class ClientAccess(BasePermission):
 
 
 class ContractAccess(BasePermission):
+    """
+    Defines access at the contract level.
+    """
     def has_permission(self, request, view):
         if view.action in ['list', 'retrieve']:
             return hasattr(request.user, 'salesman') or hasattr(request.user, 'support')
@@ -43,6 +52,9 @@ class ContractAccess(BasePermission):
 
 
 class EventAccess(BasePermission):
+    """
+    Defines access at the event level.
+    """
     def has_permission(self, request, view):
         if view.action == 'create':
             if hasattr(request.user, 'salesman'):

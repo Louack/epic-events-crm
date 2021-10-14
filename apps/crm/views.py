@@ -15,6 +15,10 @@ class CRMBaseViewSet(viewsets.ModelViewSet):
     contract = None
 
     def get_client(self):
+        """
+        Checks if the client_id url variable is corresponding to an existing client and
+        returns this client if any.
+        """
         client_id = self.kwargs['client_id']
         try:
             client = Client.objects.get(pk=client_id)
@@ -23,6 +27,10 @@ class CRMBaseViewSet(viewsets.ModelViewSet):
         return client
 
     def get_contract(self):
+        """
+        Checks if the contract_id url variable is corresponding to an existing contract and is
+        associated with the correct client and returns this contract if everything is OK.
+        """
         contract_id = self.kwargs['contract_id']
         try:
             contract = Contract.objects.get(pk=contract_id)

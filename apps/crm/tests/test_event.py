@@ -6,6 +6,11 @@ from apps.crm.models import Event
 
 
 class EventTestCase(CRMBaseTestCase):
+    """
+    Set the post and put forms, as well as kwargs to use for all tests class inheriting this class.
+    Inheriting classes will then test all API endpoints for the event model (one
+    class per user type).
+    """
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -5,6 +5,11 @@ from .base_test_crm import CRMBaseTestCase
 
 
 class ClientTestCase(CRMBaseTestCase):
+    """
+    Set the post and put forms to use for all tests class inheriting this class.
+    Inheriting classes will then test all API endpoints for the client model (one
+    class per user type).
+    """
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

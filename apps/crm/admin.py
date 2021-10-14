@@ -106,6 +106,11 @@ class ClientAdmin(admin.ModelAdmin):
             return True
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """
+        lock the sales_contact field on the salesman in charge if request user is the salesman
+        itself.
+        Managers can have access to all salesmen and change the field at will.
+        """
         if db_field.name == 'sales_contact' and hasattr(request.user, 'salesman'):
             kwargs["queryset"] = Salesman.objects.filter(user=request.user)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
@@ -201,6 +206,10 @@ class ContractAdmin(admin.ModelAdmin):
             return True
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """
+        For creation, display the clients that are part of the request user salesman.
+        For change, lock the client linked to the contract.
+        """
         if db_field.name == 'client':
             if 'add' in request.path and hasattr(request.user, 'salesman'):
                 kwargs["queryset"] = Client.objects.filter(sales_contact=request.user.salesman)
@@ -308,6 +317,13 @@ class EventAdmin(admin.ModelAdmin):
             return True
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """
+        If creation, display a list of contracts witout event  and under the control of the
+        salesman if request user is a salesman. Display only the list of contracts without events
+        if request user is manager.
+        If change, lock the support_contact associated with the request user if it is a support
+        and lock also the contract associated with the event.
+        """
         if db_field.name == 'support_contact':
             if 'change' in request.path and hasattr(request.user, 'support'):
                 kwargs["queryset"] = Support.objects.filter(user=request.user)
